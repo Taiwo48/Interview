@@ -1,4 +1,4 @@
-import SideBar from './SideBar.jsx';
+import SideBar from './sidebar.jsx';
 import './index.css';
 
 function App () {

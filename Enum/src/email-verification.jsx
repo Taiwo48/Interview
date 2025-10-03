@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import EmailVerification from "./EmailVerification";
+import EmailVerification from "./email-verification";
 
 const LetMeetYou = () => {
   const [formData, setFormData] = useState({

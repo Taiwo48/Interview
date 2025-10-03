@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import EmailVerification from "./EmailVerification";
+import EmailVerification from "./email-verification";
 
 const LetMeetYou = () => {
   const [step, setStep] = useState(1); // step 1 = basic info, step 2 = verification

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Upload from "./assets/upload Field.png";
+import Upload from "./assets/upload-field.png";
 
 export default function AddCompany() {
   const [form, setForm] = useState({
