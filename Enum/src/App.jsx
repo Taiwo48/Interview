@@ -1,10 +1,10 @@
-import SideBar from './sidebar.jsx';
 import './index.css';
+import Sidebar from './SideBar';
 
 function App () {
   return (
     <>
-    <SideBar />
+    <Sidebar />
     </>
   );
 }
