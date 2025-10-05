@@ -9,7 +9,7 @@ export default function AddCompany() {
     siteName: "",
     companySize: "",
     description: "",
-    usagePreferences: [], 
+    usagePreferences: [],
   });
 
   const [activeStep, setActiveStep] = useState("Details");
@@ -61,11 +61,6 @@ export default function AddCompany() {
                 onChange={handleChange}
                 className="mt-1 block w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
               >
-                <option value="">Select industry</option>
-                <option value="tech">Technology</option>
-                <option value="finance">Finance</option>
-                <option value="health">Healthcare</option>
-                <option value="education">Education</option>
               </select>
             </div>
 
@@ -99,11 +94,6 @@ export default function AddCompany() {
                 onChange={handleChange}
                 className="mt-1 block w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
               >
-                <option value="">Select size</option>
-                <option value="1-10">1–10 employees</option>
-                <option value="11-50">11–50 employees</option>
-                <option value="51-200">51–200 employees</option>
-                <option value="201+">201+ employees</option>
               </select>
             </div>
 
@@ -148,70 +138,69 @@ export default function AddCompany() {
           </div>
         );
 
-   case "Usage preference":
-  const usageOptions = [
-    "To train employees",
-    "To train partners",
-    "To sell assessments",
-    "To train customers",
-    "To hire talent",
-    "To sell question banks",
-    "To manage talent",
-    "To manage hub",
-    "To host live classes",
-    "To create events",
-    "For credentialing",
-    "To create courses",
-    "To manage programs",
-  ];
+      case "Usage preference":
+        const usageOptions = [
+          "To train employees",
+          "To train partners",
+          "To sell assessments",
+          "To train customers",
+          "To hire talent",
+          "To sell question banks",
+          "To manage talent",
+          "To manage hub",
+          "To host live classes",
+          "To create events",
+          "For credentialing",
+          "To create courses",
+          "To manage programs",
+        ];
 
-  return (
-    <div>
-      <h3 className="text-xl font-semibold mb-4">Usage preference</h3>
-      <p className="text-gray-600 mb-4">How will you like to use Enum?</p>
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-        {usageOptions.map((option) => {
-          const isSelected = form.usagePreferences.includes(option);
-          return (
-            <button
-              key={option}
-              type="button"
-              onClick={() => togglePreference(option)}
-              className={`px-4 py-2 rounded-full border text-sm transition text-left ${
-                isSelected
-                  ? "bg-blue-100 text-blue-700 border-blue-200"
-                  : "bg-white text-gray-700 border-gray-300 hover:bg-gray-100"
-              }`}
-            >
-              {option}
-            </button>
-          );
-        })}
-      </div>
-      <div className="flex justify-end pt-6">
-        <button
-  type="button"
-  onClick={goToNextStep}
-  className="text-blue-600 font-bold text-lg hover:underline mx-auto block"
->
-  Next
-</button>
-      </div>
-    </div>
-  );
-    
-case "Logo":
-  return (
-    <div>
-      <h3 className="text-xl font-semibold mb-4"> Logo</h3>
-      <img
-        src={Upload}
-        alt="Upload preview"
-        className="w-40 h-40 object-contain mb-4 border rounded-md"
-      />
-     
-    </div>
-  );
+        return (
+          <div>
+            <h3 className="text-xl font-semibold mb-4">Usage preference</h3>
+            <p className="text-gray-600 mb-4">How will you like to use Enum?</p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+              {usageOptions.map((option) => {
+                const isSelected = form.usagePreferences.includes(option);
+                return (
+                  <button
+                    key={option}
+                    type="button"
+                    onClick={() => togglePreference(option)}
+                    className={`px-4 py-2 rounded-full border text-sm transition text-left ${
+                      isSelected
+                        ? "bg-blue-100 text-blue-700 border-blue-200"
+                        : "bg-white text-gray-700 border-gray-300 hover:bg-gray-100"
+                    }`}
+                  >
+                    {option}
+                  </button>
+                );
+              })}
+            </div>
+            <div className="flex justify-end pt-6">
+              <button
+                type="button"
+                onClick={goToNextStep}
+                className="text-blue-600 font-bold text-lg hover:underline mx-auto block"
+              >
+                Next
+              </button>
+            </div>
+          </div>
+        );
+
+      case "Logo":
+        return (
+          <div>
+            <h3 className="text-xl font-semibold mb-4">Logo</h3>
+            <img
+              src={Upload}
+              alt="Upload preview"
+              className="w-40 h-40 object-contain mb-4 border rounded-md"
+            />
+          </div>
+        );
 
       default:
         return null;
@@ -219,10 +208,10 @@ case "Logo":
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center p-6">
-      <div className="bg-white shadow-lg rounded-lg max-w-5xl w-full grid grid-cols-1 md:grid-cols-2">
+    <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4 sm:p-6">
+      <div className="bg-white shadow-lg rounded-lg w-full max-w-6xl grid grid-cols-1 md:grid-cols-2">
         {/* Left Panel */}
-        <div className="p-8 border-r">
+        <div className="p-6 sm:p-8 border-b md:border-b-0 md:border-r">
           <h2 className="text-2xl font-bold text-gray-800 mb-2">Add company</h2>
           <p className="text-gray-600 mb-6">
             Nice work, David. Just one more step — Now, let’s complete your setup with your organization’s info.
@@ -243,7 +232,7 @@ case "Logo":
         </div>
 
         {/* Right Panel */}
-        <div className="p-8">{renderStepContent()}</div>
+        <div className="p-6 sm:p-8">{renderStepContent()}</div>
       </div>
     </div>
   );

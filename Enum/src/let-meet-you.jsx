@@ -65,18 +65,16 @@ const LetMeetYou = () => {
 
           {/* Stepper */}
           <nav className="hidden md:block space-y-4">
-            <a
-              href="#"
-              className="flex items-center p-3 border-l-4 border-blue-600"
-            >
+            <div className="flex items-center p-3 border-l-4 border-blue-600">
               <span className="font-semibold text-blue-600">Basic info</span>
-            </a>
-            <a
-              href="#"
-              className="flex items-center p-3 border-l-4 border-transparent text-gray-500"
+            </div>
+            <button
+              type="button"
+              onClick={() => setStep(2)}
+              className="flex items-center p-3 border-l-4 border-transparent text-gray-500 hover:text-blue-600"
             >
               <span>Email verification</span>
-            </a>
+            </button>
           </nav>
         </div>
 

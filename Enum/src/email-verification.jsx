@@ -1,86 +1,104 @@
-import React, { useState } from "react";
-import EmailVerification from "./email-verification";
+import React, { useState, useEffect } from "react";
 
-const LetMeetYou = () => {
-  const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
-    workEmail: "",
-    password: "",
-    confirmPassword: "",
-  });
+const EmailVerification = ({ formData, setStep }) => {
+  const [code, setCode] = useState(["", "", "", "", "", ""]);
+  const [timer, setTimer] = useState(116); // 01:56
 
-  const [step, setStep] = useState("form"); // form | verify
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTimer((prev) => (prev > 0 ? prev - 1 : 0));
+    }, 1000);
+    return () => clearInterval(interval);
+  }, []);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+  const formatTime = (seconds) => {
+    const m = String(Math.floor(seconds / 60)).padStart(2, "0");
+    const s = String(seconds % 60).padStart(2, "0");
+    return `${m}:${s}`;
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (formData.password !== formData.confirmPassword) {
-      alert("Passwords do not match!");
-      return;
+  const handleChange = (index, value) => {
+    if (/^\d?$/.test(value)) {
+      const newCode = [...code];
+      newCode[index] = value;
+      setCode(newCode);
+      if (value && index < 5) {
+        document.getElementById(`code-${index + 1}`).focus();
+      }
     }
-    // Move to verification step
-    setStep("verify");
   };
 
   return (
-    <>
-      {step === "form" ? (
-        <form onSubmit={handleSubmit} className="p-6">
-          <h1 className="text-2xl font-bold mb-4">Let's meet you</h1>
-          <input
-            type="text"
-            name="firstName"
-            placeholder="First name"
-            value={formData.firstName}
-            onChange={handleChange}
-            className="border p-2 w-full mb-3"
-          />
-          <input
-            type="text"
-            name="lastName"
-            placeholder="Last name"
-            value={formData.lastName}
-            onChange={handleChange}
-            className="border p-2 w-full mb-3"
-          />
-          <input
-            type="email"
-            name="workEmail"
-            placeholder="Work email"
-            value={formData.workEmail}
-            onChange={handleChange}
-            className="border p-2 w-full mb-3"
-          />
-          <input
-            type="password"
-            name="password"
-            placeholder="Password"
-            value={formData.password}
-            onChange={handleChange}
-            className="border p-2 w-full mb-3"
-          />
-          <input
-            type="password"
-            name="confirmPassword"
-            placeholder="Confirm Password"
-            value={formData.confirmPassword}
-            onChange={handleChange}
-            className="border p-2 w-full mb-3"
-          />
-          <button type="submit" className="bg-blue-600 text-white px-4 py-2 rounded">
-            Next
+    <div className="min-h-screen bg-gray-50 text-gray-800 flex flex-col lg:flex-row px-4 sm:px-6 md:px-10 py-10">
+      {/* Left Column */}
+      <div className="w-full max-w-md mb-10 lg:mb-0">
+        <h1 className="text-3xl md:text-4xl font-bold text-black mb-4">
+          Let's meet you
+        </h1>
+        <p className="text-gray-600 mb-8 text-sm md:text-base leading-relaxed">
+          Just a few details to get you started — including verifying your email — so we can personalize your setup and unlock the right tools for you.
+        </p>
+
+        {/* Stepper */}
+        <nav className="space-y-4 text-sm">
+          <button
+            type="button"
+            onClick={() => setStep(1)}
+            className="flex items-center p-3 border-l-4 border-transparent text-black hover:text-blue-600"
+          >
+            <span>Basic info</span>
           </button>
-        </form>
-      ) : (
-        <EmailVerification email={formData.workEmail} />
-      )}
-    </>
+          <div className="flex items-center p-3 border-l-4 border-blue-600">
+            <span className="text-blue-600 font-semibold">Email verification</span>
+          </div>
+        </nav>
+      </div>
+
+      {/* Right Column */}
+      <div className="w-full max-w-lg bg-white p-6 md:p-8 rounded-xl border border-gray-200 shadow-sm">
+        <h2 className="text-xl font-bold text-black mb-4">Email verification</h2>
+        <p className="text-sm text-black mb-6">
+          Enter the code we sent to <span className="font-medium">{formData.workEmail}</span> to verify your email.
+        </p>
+
+        {/* Code Inputs */}
+        <div className="flex justify-between gap-2 mb-4">
+          {code.map((digit, index) => (
+            <input
+              key={index}
+              id={`code-${index}`}
+              type="text"
+              maxLength="1"
+              value={digit}
+              onChange={(e) => handleChange(index, e.target.value)}
+              className="w-12 h-12 text-center text-lg border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+            />
+          ))}
+        </div>
+
+        {/* Timer */}
+        <div className="text-sm text-blue-600 font-medium text-center mb-6">
+          {formatTime(timer)}
+        </div>
+
+        {/* Troubleshooting Tips */}
+        <div className="text-sm text-black mb-6">
+          <p className="font-bold mb-2">Didn't receive the email?</p>
+          <ol className="list-decimal list-inside space-y-1">
+            <li>Check spam or promotions.</li>
+            <li>Confirm your email is correct.</li>
+            <li>Email may be auto-filled incorrectly.</li>
+            <li>Company filters blocked email.</li>
+          </ol>
+        </div>
+
+        {/* Re-enter Email */}
+        <div className="text-sm text-blue-600 hover:underline text-center">
+          <a href="#">Re-enter your email address</a>
+        </div>
+      </div>
+    </div>
   );
 };
 
-export default LetMeetYou;
+export default EmailVerification;
