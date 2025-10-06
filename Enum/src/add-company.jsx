@@ -231,7 +231,7 @@ export default function AddCompany() {
           </ul>
         </div>
 
-        {/* Right Panel */}
+        {}
         <div className="p-6 sm:p-8">{renderStepContent()}</div>
       </div>
     </div>

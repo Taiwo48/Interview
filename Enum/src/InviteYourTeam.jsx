@@ -1,10 +1,11 @@
 import { useState } from "react";
-
+import Dashboard from "./dashboard-page";
 
 export default function InviteYourTeam() {
   const [emailList, setEmailList] = useState([]);
   const [emailInput, setEmailInput] = useState("");
   const [agreed, setAgreed] = useState(false);
+  const [showDashboard, setShowDashboard] = useState(false); // 👈 Added state
 
   const handleAddEmail = () => {
     const newEmails = emailInput
@@ -25,9 +26,14 @@ export default function InviteYourTeam() {
   const handleContinue = () => {
     if (agreed) {
       console.log("Continuing setup...");
-      // Navigate to next step or submit
+      setShowDashboard(true); // 👈 Show Dashboard
     }
   };
+
+  // 👇 Render Dashboard if showDashboard is true
+  if (showDashboard) {
+    return <Dashboard />;
+  }
 
   return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center p-6">
