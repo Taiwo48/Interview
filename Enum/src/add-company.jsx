@@ -210,7 +210,7 @@ export default function AddCompany() {
   return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4 sm:p-6">
       <div className="bg-white shadow-lg rounded-lg w-full max-w-6xl grid grid-cols-1 md:grid-cols-2">
-        {/* Left Panel */}
+        
         <div className="p-6 sm:p-8 border-b md:border-b-0 md:border-r">
           <h2 className="text-2xl font-bold text-gray-800 mb-2">Add company</h2>
           <p className="text-gray-600 mb-6">

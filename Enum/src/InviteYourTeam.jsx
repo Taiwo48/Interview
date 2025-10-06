@@ -5,7 +5,7 @@ export default function InviteYourTeam() {
   const [emailList, setEmailList] = useState([]);
   const [emailInput, setEmailInput] = useState("");
   const [agreed, setAgreed] = useState(false);
-  const [showDashboard, setShowDashboard] = useState(false); // 👈 Added state
+  const [showDashboard, setShowDashboard] = useState(false); 
 
   const handleAddEmail = () => {
     const newEmails = emailInput
@@ -26,11 +26,11 @@ export default function InviteYourTeam() {
   const handleContinue = () => {
     if (agreed) {
       console.log("Continuing setup...");
-      setShowDashboard(true); // 👈 Show Dashboard
+      setShowDashboard(true); 
     }
   };
 
-  // 👇 Render Dashboard if showDashboard is true
+  
   if (showDashboard) {
     return <Dashboard />;
   }
@@ -38,7 +38,7 @@ export default function InviteYourTeam() {
   return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center p-6">
       <div className="max-w-xl w-full bg-white shadow-md rounded-lg p-8">
-        {/* Header */}
+        
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-2xl font-bold text-gray-800">Invite your team</h2>
           <a href="#" className="text-sm text-blue-600 hover:underline">
@@ -46,12 +46,12 @@ export default function InviteYourTeam() {
           </a>
         </div>
 
-        {/* Description */}
+        
         <p className="text-gray-600 mb-4">
           Want help managing things? Invite teammates now or add them anytime later.
         </p>
 
-        {/* Email Input with Tags and Invite Button in Bottom Right */}
+        
         <div className="relative mb-6">
           <div className="flex flex-wrap items-center border border-gray-300 rounded-md px-2 py-2 min-h-[60px] focus-within:ring-2 focus-within:ring-blue-500">
             {emailList.map((email) => (
@@ -94,7 +94,7 @@ export default function InviteYourTeam() {
           </button>
         </div>
 
-        {/* Terms Agreement and Continue Button Side-by-Side */}
+        
         <div className="flex items-center justify-between mb-6">
           <div className="flex items-center">
             <input

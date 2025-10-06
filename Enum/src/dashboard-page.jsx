@@ -219,7 +219,7 @@ export default function Dashboard() {
         </div>
       </aside>
 
-      {/* Main Content */}
+      
       <main className="flex-1 overflow-auto">
         <div className="lg:hidden sticky top-0 z-30 bg-white border-b border-gray-200 px-4 py-3 flex items-center justify-between">
           <button onClick={() => setMobileMenuOpen(true)}>
@@ -285,7 +285,7 @@ export default function Dashboard() {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-6 mb-4 md:mb-6">
-            {/* Course Performance */}
+          
             <div className="lg:col-span-2 bg-white rounded-lg shadow-sm border border-gray-200 p-4 md:p-6">
               <div className="flex items-center justify-between mb-4 md:mb-6">
                 <h3 className="text-base md:text-lg font-semibold text-gray-900">Course performance</h3>

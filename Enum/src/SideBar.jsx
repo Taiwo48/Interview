@@ -19,7 +19,7 @@ const Sidebar = () => {
       id: 2,
       title: "Add company",
       description: "Create your space on Enum",
-      component: <AddCompany />,   // ⬅️ use AddCompany component
+      component: <AddCompany />,   
     },
     {
       id: 3,
@@ -33,11 +33,11 @@ const Sidebar = () => {
 
   return (
     <div className="flex min-h-screen">
-      {/* Sidebar */}
+      
       <div className="w-64 bg-blue-600 text-white p-6">
         <img src={Logo} alt="Logo" className="w-20 h-5 mb-6" />
 
-        {/* Steps */}
+        
         <div className="relative">
           {steps.map((step, index) => {
             const isActive = activeStep === step.id;
@@ -48,7 +48,7 @@ const Sidebar = () => {
                 className="relative flex items-start mb-8 cursor-pointer"
                 onClick={() => setActiveStep(step.id)}
               >
-                {/* Step indicator */}
+                
                 <div className="flex flex-col items-center mr-4">
                   <div
                     className={`w-6 h-6 flex items-center justify-center rounded-full border-2 transition-colors duration-300 ${
@@ -66,7 +66,7 @@ const Sidebar = () => {
                   )}
                 </div>
 
-                {/* Step text */}
+            
                 <div>
                   <h3
                     className={`font-semibold ${
@@ -83,7 +83,7 @@ const Sidebar = () => {
         </div>
       </div>
 
-      {/* Main Content */}
+      
       <div className="flex-1 p-10 bg-gray-50">{activeComponent}</div>
     </div>
   );

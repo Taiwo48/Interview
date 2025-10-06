@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import EmailVerification from "./email-verification";
 
 const LetMeetYou = () => {
-  const [step, setStep] = useState(1); // step 1 = basic info, step 2 = verification
+  const [step, setStep] = useState(1); 
 
   const [formData, setFormData] = useState({
     firstName: "",
@@ -30,17 +30,17 @@ const LetMeetYou = () => {
       return;
     }
     console.log("Form submitted:", formData);
-    setStep(2); // move to verification step
+    setStep(2); 
   };
 
-  // 🔹 Render step based on state
+  
   if (step === 2) {
     return <EmailVerification formData={formData} />;
   }
 
   return (
     <div className="w-full min-h-screen flex flex-col bg-gray-50 text-gray-800">
-      {/* Top navigation link */}
+      
       <div className="w-full flex justify-end text-sm p-4 sm:p-6 md:p-10">
         <p>
           Already on Enum?{" "}
@@ -50,9 +50,9 @@ const LetMeetYou = () => {
         </p>
       </div>
 
-      {/* Main Content */}
+      
       <main className="flex-grow flex flex-col lg:flex-row items-start justify-center gap-12 px-4 sm:px-6 md:px-10">
-        {/* Left Column */}
+        
         <div className="w-full max-w-md">
           <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
             Let's meet you
@@ -63,7 +63,7 @@ const LetMeetYou = () => {
             for you.
           </p>
 
-          {/* Stepper */}
+          
           <nav className="hidden md:block space-y-4">
             <div className="flex items-center p-3 border-l-4 border-blue-600">
               <span className="font-semibold text-blue-600">Basic info</span>
@@ -78,12 +78,12 @@ const LetMeetYou = () => {
           </nav>
         </div>
 
-        {/* Right Column: Form Card */}
+        
         <div className="w-full max-w-lg bg-white p-6 md:p-8 rounded-xl border border-gray-200 shadow-sm">
           <h2 className="text-lg md:text-xl font-semibold mb-6">Basic info</h2>
           <form onSubmit={handleSubmit}>
             <div className="space-y-5">
-              {/* First Name */}
+            
               <div>
                 <label
                   htmlFor="firstName"
@@ -103,7 +103,7 @@ const LetMeetYou = () => {
                 />
               </div>
 
-              {/* Last Name */}
+              
               <div>
                 <label
                   htmlFor="lastName"
@@ -123,7 +123,7 @@ const LetMeetYou = () => {
                 />
               </div>
 
-              {/* Work Email */}
+              
               <div>
                 <label
                   htmlFor="workEmail"
@@ -143,7 +143,7 @@ const LetMeetYou = () => {
                 />
               </div>
 
-              {/* Password */}
+              
               <div>
                 <label
                   htmlFor="password"
@@ -172,7 +172,7 @@ const LetMeetYou = () => {
                 </div>
               </div>
 
-              {/* Confirm Password */}
+              
               <div>
                 <label
                   htmlFor="confirmPassword"
@@ -203,7 +203,7 @@ const LetMeetYou = () => {
                 </div>
               </div>
 
-              {/* Next Button */}
+              
               <div className="flex justify-end pt-4">
                 <button
                   type="submit"

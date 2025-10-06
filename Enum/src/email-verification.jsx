@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 
 const EmailVerification = ({ formData, setStep }) => {
   const [code, setCode] = useState(["", "", "", "", "", ""]);
-  const [timer, setTimer] = useState(116); // 01:56
+  const [timer, setTimer] = useState(116); 
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -30,7 +30,7 @@ const EmailVerification = ({ formData, setStep }) => {
 
   return (
     <div className="min-h-screen bg-gray-50 text-gray-800 flex flex-col lg:flex-row px-4 sm:px-6 md:px-10 py-10">
-      {/* Left Column */}
+      
       <div className="w-full max-w-md mb-10 lg:mb-0">
         <h1 className="text-3xl md:text-4xl font-bold text-black mb-4">
           Let's meet you
@@ -39,7 +39,7 @@ const EmailVerification = ({ formData, setStep }) => {
           Just a few details to get you started — including verifying your email — so we can personalize your setup and unlock the right tools for you.
         </p>
 
-        {/* Stepper */}
+        
         <nav className="space-y-4 text-sm">
           <button
             type="button"
@@ -54,14 +54,14 @@ const EmailVerification = ({ formData, setStep }) => {
         </nav>
       </div>
 
-      {/* Right Column */}
+      
       <div className="w-full max-w-lg bg-white p-6 md:p-8 rounded-xl border border-gray-200 shadow-sm">
         <h2 className="text-xl font-bold text-black mb-4">Email verification</h2>
         <p className="text-sm text-black mb-6">
           Enter the code we sent to <span className="font-medium">{formData.workEmail}</span> to verify your email.
         </p>
 
-        {/* Code Inputs */}
+        
         <div className="flex justify-between gap-2 mb-4">
           {code.map((digit, index) => (
             <input
@@ -76,12 +76,12 @@ const EmailVerification = ({ formData, setStep }) => {
           ))}
         </div>
 
-        {/* Timer */}
+       
         <div className="text-sm text-blue-600 font-medium text-center mb-6">
           {formatTime(timer)}
         </div>
 
-        {/* Troubleshooting Tips */}
+        
         <div className="text-sm text-black mb-6">
           <p className="font-bold mb-2">Didn't receive the email?</p>
           <ol className="list-decimal list-inside space-y-1">
@@ -92,7 +92,7 @@ const EmailVerification = ({ formData, setStep }) => {
           </ol>
         </div>
 
-        {/* Re-enter Email */}
+        
         <div className="text-sm text-blue-600 hover:underline text-center">
           <a href="#">Re-enter your email address</a>
         </div>
