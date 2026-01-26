@@ -10,6 +10,7 @@ export default function AddCompany() {
     companySize: "",
     description: "",
     usagePreferences: [],
+    logo: null, // ✅ new field for logo
   });
 
   const [activeStep, setActiveStep] = useState("Details");
@@ -36,13 +37,23 @@ export default function AddCompany() {
     });
   };
 
+  // ✅ handle logo upload
+  const handleLogoUpload = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setForm({ ...form, logo: URL.createObjectURL(file) });
+    }
+  };
+
   const renderStepContent = () => {
     switch (activeStep) {
       case "Details":
         return (
           <form className="space-y-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700">Company name*</label>
+              <label className="block text-sm font-medium text-gray-700">
+                Company name*
+              </label>
               <input
                 type="text"
                 name="companyName"
@@ -54,18 +65,21 @@ export default function AddCompany() {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700">Industry</label>
+              <label className="block text-sm font-medium text-gray-700">
+                Industry
+              </label>
               <select
                 name="industry"
                 value={form.industry}
                 onChange={handleChange}
                 className="mt-1 block w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-              >
-              </select>
+              ></select>
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700">Website</label>
+              <label className="block text-sm font-medium text-gray-700">
+                Website
+              </label>
               <input
                 type="url"
                 name="website"
@@ -76,7 +90,9 @@ export default function AddCompany() {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700">Site name</label>
+              <label className="block text-sm font-medium text-gray-700">
+                Site name
+              </label>
               <input
                 type="text"
                 name="siteName"
@@ -87,14 +103,15 @@ export default function AddCompany() {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700">Company size</label>
+              <label className="block text-sm font-medium text-gray-700">
+                Company size
+              </label>
               <select
                 name="companySize"
                 value={form.companySize}
                 onChange={handleChange}
                 className="mt-1 block w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-              >
-              </select>
+              ></select>
             </div>
 
             <div className="flex justify-end pt-4">
@@ -113,7 +130,9 @@ export default function AddCompany() {
         return (
           <div>
             <h3 className="text-xl font-semibold mb-4">Short description</h3>
-            <label className="block text-sm text-gray-700 mb-2">Give a short description of your company</label>
+            <label className="block text-sm text-gray-700 mb-2">
+              Give a short description of your company
+            </label>
             <textarea
               name="description"
               rows="6"
@@ -159,7 +178,7 @@ export default function AddCompany() {
           <div>
             <h3 className="text-xl font-semibold mb-4">Usage preference</h3>
             <p className="text-gray-600 mb-4">How will you like to use Enum?</p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {usageOptions.map((option) => {
                 const isSelected = form.usagePreferences.includes(option);
                 return (
@@ -194,10 +213,17 @@ export default function AddCompany() {
         return (
           <div>
             <h3 className="text-xl font-semibold mb-4">Logo</h3>
+            {/* ✅ Show uploaded logo or placeholder */}
             <img
-              src={Upload}
+              src={form.logo || Upload}
               alt="Upload preview"
               className="w-40 h-40 object-contain mb-4 border rounded-md"
+            />
+            <input
+              type="file"
+              accept="image/*"
+              onChange={handleLogoUpload}
+              className="block w-full text-sm text-gray-600"
             />
           </div>
         );
@@ -210,7 +236,6 @@ export default function AddCompany() {
   return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4 sm:p-6">
       <div className="bg-white shadow-lg rounded-lg w-full max-w-6xl grid grid-cols-1 md:grid-cols-2">
-        
         <div className="p-6 sm:p-8 border-b md:border-b-0 md:border-r">
           <h2 className="text-2xl font-bold text-gray-800 mb-2">Add company</h2>
           <p className="text-gray-600 mb-6">
@@ -221,17 +246,18 @@ export default function AddCompany() {
               <li
                 key={step}
                 onClick={() => setActiveStep(step)}
-                className={`font-semibold cursor-pointer ${
-                  activeStep === step ? "text-blue-600" : "hover:text-blue-500"
+                className={`cursor-pointer px-3 py-1 border-l-4 ${
+                  activeStep === step
+                    ? "border-blue-600 text-blue-600 font-semibold bg-blue-50"
+                    : "border-transparent hover:text-blue-500"
                 }`}
               >
-                • {step}
+                {step}
               </li>
             ))}
           </ul>
         </div>
 
-        {}
         <div className="p-6 sm:p-8">{renderStepContent()}</div>
       </div>
     </div>

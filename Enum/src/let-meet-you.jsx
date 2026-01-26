@@ -33,9 +33,9 @@ const LetMeetYou = () => {
     setStep(2); 
   };
 
-  
+  // ✅ Pass setStep into EmailVerification
   if (step === 2) {
-    return <EmailVerification formData={formData} />;
+    return <EmailVerification formData={formData} setStep={setStep} />;
   }
 
   return (
@@ -50,7 +50,6 @@ const LetMeetYou = () => {
         </p>
       </div>
 
-      
       <main className="flex-grow flex flex-col lg:flex-row items-start justify-center gap-12 px-4 sm:px-6 md:px-10">
         
         <div className="w-full max-w-md">
@@ -63,22 +62,33 @@ const LetMeetYou = () => {
             for you.
           </p>
 
-          
+          {/* ✅ Make nav clickable both ways */}
           <nav className="hidden md:block space-y-4">
-            <div className="flex items-center p-3 border-l-4 border-blue-600">
-              <span className="font-semibold text-blue-600">Basic info</span>
-            </div>
+            <button
+              type="button"
+              onClick={() => setStep(1)}
+              className={`flex items-center p-3 border-l-4 ${
+                step === 1
+                  ? "border-blue-600 text-blue-600 font-semibold"
+                  : "border-transparent text-gray-500 hover:text-blue-600"
+              }`}
+            >
+              <span>Basic info</span>
+            </button>
             <button
               type="button"
               onClick={() => setStep(2)}
-              className="flex items-center p-3 border-l-4 border-transparent text-gray-500 hover:text-blue-600"
+              className={`flex items-center p-3 border-l-4 ${
+                step === 2
+                  ? "border-blue-600 text-blue-600 font-semibold"
+                  : "border-transparent text-gray-500 hover:text-blue-600"
+              }`}
             >
               <span>Email verification</span>
             </button>
           </nav>
         </div>
 
-        
         <div className="w-full max-w-lg bg-white p-6 md:p-8 rounded-xl border border-gray-200 shadow-sm">
           <h2 className="text-lg md:text-xl font-semibold mb-6">Basic info</h2>
           <form onSubmit={handleSubmit}>
@@ -103,7 +113,6 @@ const LetMeetYou = () => {
                 />
               </div>
 
-              
               <div>
                 <label
                   htmlFor="lastName"
@@ -123,7 +132,6 @@ const LetMeetYou = () => {
                 />
               </div>
 
-              
               <div>
                 <label
                   htmlFor="workEmail"
@@ -143,7 +151,6 @@ const LetMeetYou = () => {
                 />
               </div>
 
-              
               <div>
                 <label
                   htmlFor="password"
@@ -172,7 +179,6 @@ const LetMeetYou = () => {
                 </div>
               </div>
 
-              
               <div>
                 <label
                   htmlFor="confirmPassword"
@@ -203,7 +209,6 @@ const LetMeetYou = () => {
                 </div>
               </div>
 
-              
               <div className="flex justify-end pt-4">
                 <button
                   type="submit"
@@ -222,7 +227,7 @@ const LetMeetYou = () => {
         <div className="bg-gray-200 rounded-full h-1.5 w-full">
           <div
             className="bg-blue-600 h-1.5 rounded-full"
-            style={{ width: "50%" }}
+            style={{ width: step === 1 ? "50%" : "100%" }}
           ></div>
         </div>
       </div>
