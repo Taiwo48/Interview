@@ -10,7 +10,7 @@ export default function AddCompany() {
     companySize: "",
     description: "",
     usagePreferences: [],
-    logo: null, // ✅ new field for logo
+    logo: null,
   });
 
   const [activeStep, setActiveStep] = useState("Details");
@@ -37,7 +37,6 @@ export default function AddCompany() {
     });
   };
 
-  // ✅ handle logo upload
   const handleLogoUpload = (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -51,6 +50,10 @@ export default function AddCompany() {
         return (
           <form className="space-y-4">
             <div>
+              <label className="block text-xl font-semibold text-gray-900 mb-4">
+                Details
+              </label>
+
               <label className="block text-sm font-medium text-gray-700">
                 Company name*
               </label>
@@ -114,14 +117,14 @@ export default function AddCompany() {
               ></select>
             </div>
 
-            <div className="flex justify-end pt-4">
-              <button
-                type="button"
-                onClick={goToNextStep}
-                className="bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-700 transition"
-              >
-                Next
-              </button>
+            <div className="flex justify-end pt-6">
+            <button
+              type="button"
+              onClick={goToNextStep}
+              className="text-blue-600 font-bold text-lg hover:underline mr-2"
+            >
+              Next
+            </button>
             </div>
           </form>
         );
@@ -145,75 +148,79 @@ export default function AddCompany() {
             <div className="text-right text-sm text-gray-500 mt-1">
               {form.description.length}/1000 characters
             </div>
-            <div className="flex justify-end pt-4">
-              <button
-                type="button"
-                onClick={goToNextStep}
-                className="bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-700 transition"
-              >
-                Next
-              </button>
-            </div>
-          </div>
-        );
-
-      case "Usage preference":
-        const usageOptions = [
-          "To train employees",
-          "To train partners",
-          "To sell assessments",
-          "To train customers",
-          "To hire talent",
-          "To sell question banks",
-          "To manage talent",
-          "To manage hub",
-          "To host live classes",
-          "To create events",
-          "For credentialing",
-          "To create courses",
-          "To manage programs",
-        ];
-
-        return (
-          <div>
-            <h3 className="text-xl font-semibold mb-4">Usage preference</h3>
-            <p className="text-gray-600 mb-4">How will you like to use Enum?</p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              {usageOptions.map((option) => {
-                const isSelected = form.usagePreferences.includes(option);
-                return (
-                  <button
-                    key={option}
-                    type="button"
-                    onClick={() => togglePreference(option)}
-                    className={`px-4 py-2 rounded-full border text-sm transition text-left ${
-                      isSelected
-                        ? "bg-blue-100 text-blue-700 border-blue-200"
-                        : "bg-white text-gray-700 border-gray-300 hover:bg-gray-100"
-                    }`}
-                  >
-                    {option}
-                  </button>
-                );
-              })}
-            </div>
             <div className="flex justify-end pt-6">
-              <button
-                type="button"
-                onClick={goToNextStep}
-                className="text-blue-600 font-bold text-lg hover:underline mx-auto block"
-              >
-                Next
-              </button>
+            <button
+              type="button"
+              onClick={goToNextStep}
+              className="text-blue-600 font-bold text-lg hover:underline mr-2"
+            >
+              Next
+            </button>
             </div>
           </div>
         );
+
+case "Usage preference":
+  const usageOptions = [
+    "To train employees",
+    "To train partners",
+    "To sell assessments",
+    "To train customers",
+    "To hire talent",
+    "To sell question banks",
+    "To manage talent",
+    "To manage hub",
+    "To host live classes",
+    "To create events",
+    "For credentialing",
+    "To create courses",
+    "To manage programs",
+  ];
+
+  return (
+    <div>
+      <h3 className="text-xl font-semibold mb-4">Usage preference</h3>
+      <p className="text-gray-600 mb-4">How will you like to use Enum?</p>
+
+      {/* Scrollable container */}
+      <div className="max-h-[300px] overflow-y-auto pr-1">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          {usageOptions.map((option) => {
+            const isSelected = form.usagePreferences.includes(option);
+            return (
+              <button
+                key={option}
+                type="button"
+                onClick={() => togglePreference(option)}
+                className={`px-4 py-2 rounded-full border text-sm transition text-left ${
+                  isSelected
+                    ? "bg-blue-100 text-blue-700 border-blue-200"
+                    : "bg-white text-gray-700 border-gray-300 hover:bg-gray-100"
+                }`}
+              >
+                {option}
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      <div className="flex justify-end pt-6">
+        <button
+          type="button"
+          onClick={goToNextStep}
+          className="text-blue-600 font-bold text-lg hover:underline mr-2"
+        >
+          Next
+        </button>
+      </div>
+    </div>
+  );
 
       case "Logo":
         return (
           <div>
             <h3 className="text-xl font-semibold mb-4">Logo</h3>
-            {/* ✅ Show uploaded logo or placeholder */}
             <img
               src={form.logo || Upload}
               alt="Upload preview"
@@ -236,8 +243,10 @@ export default function AddCompany() {
   return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4 sm:p-6">
       <div className="bg-white shadow-lg rounded-lg w-full max-w-6xl grid grid-cols-1 md:grid-cols-2">
+
         <div className="p-6 sm:p-8 border-b md:border-b-0 md:border-r">
-          <h2 className="text-2xl font-bold text-gray-800 mb-2">Add company</h2>
+          <h2 className="text-2xl font-bold text-gray-800 mb-2">Add</h2>
+          <h2 className="text-2xl font-bold text-gray-800 mb-2">company</h2>
           <p className="text-gray-600 mb-6">
             Nice work, David. Just one more step — Now, let’s complete your setup with your organization’s info.
           </p>
@@ -258,7 +267,11 @@ export default function AddCompany() {
           </ul>
         </div>
 
-        <div className="p-6 sm:p-8">{renderStepContent()}</div>
+        {/* 🔥 FIX APPLIED HERE */}
+        <div className="p-6 sm:p-8 h-[600px] overflow-y-auto">
+          {renderStepContent()}
+        </div>
+
       </div>
     </div>
   );

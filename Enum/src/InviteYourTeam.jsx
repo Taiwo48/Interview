@@ -35,6 +35,26 @@ export default function InviteYourTeam() {
 
   return (
     <div className="min-h-screen bg-gray-50 px-8 font-sans">
+      {/* ARROW ICON ONLY */}
+      <div className="pt-6">
+        <button
+          type="button"
+          onClick={() => window.history.back()}
+          className="text-gray-400 hover:text-gray-600"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={2}
+            stroke="currentColor"
+            className="w-6 h-6"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+          </svg>
+        </button>
+      </div>
+
       {/* TOP BAR */}
       <div className="flex justify-end pt-6">
         <a href="#" className="text-sm text-gray-600 hover:underline">
@@ -52,6 +72,14 @@ export default function InviteYourTeam() {
           <p className="text-gray-600 leading-relaxed max-w-sm">
             Want help managing things? Invite teammates now or add them anytime later.
           </p>
+
+          {/* ✅ Invites sent confirmation on the left */}
+          {emailList.length > 0 && (
+            <div className="mt-6 inline-flex items-center border border-blue-600 text-blue-600 text-sm font-medium px-4 py-2 rounded-md">
+              <span className="mr-2 inline-block w-4 h-4 bg-blue-600 rounded-full flex items-center justify-center text-white text-xs">✓</span>
+              {emailList.length} Invite{emailList.length > 1 ? "s" : ""} sent
+            </div>
+          )}
         </div>
 
         {/* RIGHT CARD */}
