@@ -161,61 +161,57 @@ export default function AddCompany() {
         );
 
 case "Usage preference":
-  const usageOptions = [
-    "To train employees",
-    "To train partners",
-    "To sell assessments",
-    "To train customers",
-    "To hire talent",
-    "To sell question banks",
-    "To manage talent",
-    "To manage hub",
-    "To host live classes",
-    "To create events",
-    "For credentialing",
-    "To create courses",
-    "To manage programs",
-  ];
+        const usageOptions = [
+          "To train employees",
+          "To train partners",
+          "To sell assessments",
+          "To train customers",
+          "To hire talent",
+          "To sell question banks",
+          "To manage talent",
+          "To manage hub",
+          "To host live classes",
+          "To create events",
+          "For credentialing",
+          "To create courses",
+          "To manage programs",
+        ];
 
-  return (
-    <div>
-      <h3 className="text-xl font-semibold mb-4">Usage preference</h3>
-      <p className="text-gray-600 mb-4">How will you like to use Enum?</p>
+        return (
+          <div className="flex-1 overflow-y-auto">
+            <h3 className="text-xl font-semibold mb-4">Usage preference</h3>
 
-      {/* Scrollable container */}
-      <div className="max-h-[300px] overflow-y-auto pr-1">
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          {usageOptions.map((option) => {
-            const isSelected = form.usagePreferences.includes(option);
-            return (
+            <div className="h-80 overflow-y-scroll grid grid-cols-1 sm:grid-cols-2 gap-3">
+              {usageOptions.map((option) => {
+                const isSelected = form.usagePreferences.includes(option);
+                return (
+                  <button
+                    key={option}
+                    type="button"
+                    onClick={() => togglePreference(option)}
+                    className={`px-4 py-2 rounded-full text-sm text-left ${
+                      isSelected
+                        ? "bg-blue-100 text-blue-700"
+                        : "bg-gray-100 text-gray-700"
+                    }`}
+                  >
+                    {option}
+                  </button>
+                );
+              })}
+            </div>
+
+            <div className="flex justify-end pt-6">
               <button
-                key={option}
                 type="button"
-                onClick={() => togglePreference(option)}
-                className={`px-4 py-2 rounded-full border text-sm transition text-left ${
-                  isSelected
-                    ? "bg-blue-100 text-blue-700 border-blue-200"
-                    : "bg-white text-gray-700 border-gray-300 hover:bg-gray-100"
-                }`}
+                onClick={goToNextStep}
+                className="text-blue-600 font-semibold hover:underline"
               >
-                {option}
+                Next
               </button>
-            );
-          })}
-        </div>
-      </div>
-
-      <div className="flex justify-end pt-6">
-        <button
-          type="button"
-          onClick={goToNextStep}
-          className="text-blue-600 font-bold text-lg hover:underline mr-2"
-        >
-          Next
-        </button>
-      </div>
-    </div>
-  );
+            </div>
+          </div>
+        );
 
       case "Logo":
         return (

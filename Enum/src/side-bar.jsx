@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import LetMeetYou from "./let-meet-you";
 import AddCompany from "./add-company";  
-import InviteYourTeam from "./InviteYourTeam";
+import InviteYourTeam from "./Invite-Your-Team";
 
 import Logo from "./assets/Enum_Logo_White 1.png";
 
