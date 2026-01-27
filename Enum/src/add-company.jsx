@@ -9,7 +9,8 @@ export default function AddCompany() {
     siteName: "",
     companySize: "",
     description: "",
-    usagePreferences: [], 
+    usagePreferences: [],
+    logo: null,
   });
 
   const [activeStep, setActiveStep] = useState("Details");
@@ -36,13 +37,26 @@ export default function AddCompany() {
     });
   };
 
+  const handleLogoUpload = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setForm({ ...form, logo: URL.createObjectURL(file) });
+    }
+  };
+
   const renderStepContent = () => {
     switch (activeStep) {
       case "Details":
         return (
           <form className="space-y-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700">Company name*</label>
+              <label className="block text-xl font-semibold text-gray-900 mb-4">
+                Details
+              </label>
+
+              <label className="block text-sm font-medium text-gray-700">
+                Company name*
+              </label>
               <input
                 type="text"
                 name="companyName"
@@ -54,23 +68,21 @@ export default function AddCompany() {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700">Industry</label>
+              <label className="block text-sm font-medium text-gray-700">
+                Industry
+              </label>
               <select
                 name="industry"
                 value={form.industry}
                 onChange={handleChange}
                 className="mt-1 block w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-              >
-                <option value="">Select industry</option>
-                <option value="tech">Technology</option>
-                <option value="finance">Finance</option>
-                <option value="health">Healthcare</option>
-                <option value="education">Education</option>
-              </select>
+              ></select>
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700">Website</label>
+              <label className="block text-sm font-medium text-gray-700">
+                Website
+              </label>
               <input
                 type="url"
                 name="website"
@@ -81,7 +93,9 @@ export default function AddCompany() {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700">Site name</label>
+              <label className="block text-sm font-medium text-gray-700">
+                Site name
+              </label>
               <input
                 type="text"
                 name="siteName"
@@ -92,29 +106,25 @@ export default function AddCompany() {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700">Company size</label>
+              <label className="block text-sm font-medium text-gray-700">
+                Company size
+              </label>
               <select
                 name="companySize"
                 value={form.companySize}
                 onChange={handleChange}
                 className="mt-1 block w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-              >
-                <option value="">Select size</option>
-                <option value="1-10">1–10 employees</option>
-                <option value="11-50">11–50 employees</option>
-                <option value="51-200">51–200 employees</option>
-                <option value="201+">201+ employees</option>
-              </select>
+              ></select>
             </div>
 
-            <div className="flex justify-end pt-4">
-              <button
-                type="button"
-                onClick={goToNextStep}
-                className="bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-700 transition"
-              >
-                Next
-              </button>
+            <div className="flex justify-end pt-6">
+            <button
+              type="button"
+              onClick={goToNextStep}
+              className="text-blue-600 font-bold text-lg hover:underline mr-2"
+            >
+              Next
+            </button>
             </div>
           </form>
         );
@@ -123,7 +133,9 @@ export default function AddCompany() {
         return (
           <div>
             <h3 className="text-xl font-semibold mb-4">Short description</h3>
-            <label className="block text-sm text-gray-700 mb-2">Give a short description of your company</label>
+            <label className="block text-sm text-gray-700 mb-2">
+              Give a short description of your company
+            </label>
             <textarea
               name="description"
               rows="6"
@@ -136,19 +148,19 @@ export default function AddCompany() {
             <div className="text-right text-sm text-gray-500 mt-1">
               {form.description.length}/1000 characters
             </div>
-            <div className="flex justify-end pt-4">
-              <button
-                type="button"
-                onClick={goToNextStep}
-                className="bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-700 transition"
-              >
-                Next
-              </button>
+            <div className="flex justify-end pt-6">
+            <button
+              type="button"
+              onClick={goToNextStep}
+              className="text-blue-600 font-bold text-lg hover:underline mr-2"
+            >
+              Next
+            </button>
             </div>
           </div>
         );
 
-   case "Usage preference":
+case "Usage preference":
   const usageOptions = [
     "To train employees",
     "To train partners",
@@ -169,49 +181,59 @@ export default function AddCompany() {
     <div>
       <h3 className="text-xl font-semibold mb-4">Usage preference</h3>
       <p className="text-gray-600 mb-4">How will you like to use Enum?</p>
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-        {usageOptions.map((option) => {
-          const isSelected = form.usagePreferences.includes(option);
-          return (
-            <button
-              key={option}
-              type="button"
-              onClick={() => togglePreference(option)}
-              className={`px-4 py-2 rounded-full border text-sm transition text-left ${
-                isSelected
-                  ? "bg-blue-100 text-blue-700 border-blue-200"
-                  : "bg-white text-gray-700 border-gray-300 hover:bg-gray-100"
-              }`}
-            >
-              {option}
-            </button>
-          );
-        })}
+
+      {/* Scrollable container */}
+      <div className="max-h-[300px] overflow-y-auto pr-1">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          {usageOptions.map((option) => {
+            const isSelected = form.usagePreferences.includes(option);
+            return (
+              <button
+                key={option}
+                type="button"
+                onClick={() => togglePreference(option)}
+                className={`px-4 py-2 rounded-full border text-sm transition text-left ${
+                  isSelected
+                    ? "bg-blue-100 text-blue-700 border-blue-200"
+                    : "bg-white text-gray-700 border-gray-300 hover:bg-gray-100"
+                }`}
+              >
+                {option}
+              </button>
+            );
+          })}
+        </div>
       </div>
+
       <div className="flex justify-end pt-6">
         <button
-  type="button"
-  onClick={goToNextStep}
-  className="text-blue-600 font-bold text-lg hover:underline mx-auto block"
->
-  Next
-</button>
+          type="button"
+          onClick={goToNextStep}
+          className="text-blue-600 font-bold text-lg hover:underline mr-2"
+        >
+          Next
+        </button>
       </div>
     </div>
   );
-    
-case "Logo":
-  return (
-    <div>
-      <h3 className="text-xl font-semibold mb-4"> Logo</h3>
-      <img
-        src={Upload}
-        alt="Upload preview"
-        className="w-40 h-40 object-contain mb-4 border rounded-md"
-      />
-     
-    </div>
-  );
+
+      case "Logo":
+        return (
+          <div>
+            <h3 className="text-xl font-semibold mb-4">Logo</h3>
+            <img
+              src={form.logo || Upload}
+              alt="Upload preview"
+              className="w-40 h-40 object-contain mb-4 border rounded-md"
+            />
+            <input
+              type="file"
+              accept="image/*"
+              onChange={handleLogoUpload}
+              className="block w-full text-sm text-gray-600"
+            />
+          </div>
+        );
 
       default:
         return null;
@@ -219,11 +241,12 @@ case "Logo":
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center p-6">
-      <div className="bg-white shadow-lg rounded-lg max-w-5xl w-full grid grid-cols-1 md:grid-cols-2">
-        {/* Left Panel */}
-        <div className="p-8 border-r">
-          <h2 className="text-2xl font-bold text-gray-800 mb-2">Add company</h2>
+    <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4 sm:p-6">
+      <div className="bg-white shadow-lg rounded-lg w-full max-w-6xl grid grid-cols-1 md:grid-cols-2">
+
+        <div className="p-6 sm:p-8 border-b md:border-b-0 md:border-r">
+          <h2 className="text-2xl font-bold text-gray-800 mb-2">Add</h2>
+          <h2 className="text-2xl font-bold text-gray-800 mb-2">company</h2>
           <p className="text-gray-600 mb-6">
             Nice work, David. Just one more step — Now, let’s complete your setup with your organization’s info.
           </p>
@@ -232,18 +255,23 @@ case "Logo":
               <li
                 key={step}
                 onClick={() => setActiveStep(step)}
-                className={`font-semibold cursor-pointer ${
-                  activeStep === step ? "text-blue-600" : "hover:text-blue-500"
+                className={`cursor-pointer px-3 py-1 border-l-4 ${
+                  activeStep === step
+                    ? "border-blue-600 text-blue-600 font-semibold bg-blue-50"
+                    : "border-transparent hover:text-blue-500"
                 }`}
               >
-                • {step}
+                {step}
               </li>
             ))}
           </ul>
         </div>
 
-        {/* Right Panel */}
-        <div className="p-8">{renderStepContent()}</div>
+        {/* 🔥 FIX APPLIED HERE */}
+        <div className="p-6 sm:p-8 h-[600px] overflow-y-auto">
+          {renderStepContent()}
+        </div>
+
       </div>
     </div>
   );
