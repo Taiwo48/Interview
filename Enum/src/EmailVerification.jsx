@@ -4,6 +4,7 @@ import AddCompany from "./AddCompany";
 const EmailVerification = ({ formData, setStep }) => {
   const [code, setCode] = useState(["", "", "", "", "", ""]);
   const [timer, setTimer] = useState(116);
+  const [error, setError] = useState(""); // ❗ Error message
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -31,17 +32,21 @@ const EmailVerification = ({ formData, setStep }) => {
 
   const handleVerify = () => {
     const enteredCode = code.join("");
+
     if (enteredCode.length === 6) {
       console.log("Verifying code:", enteredCode);
-      setStep("addCompany");
+      setError("");
+
+      // ✅ CORRECT STEP NAME (TAKES YOU TO ADD COMPANY)
+      setStep("AddCompany");
+
     } else {
-      alert("Please enter the full 6-digit code.");
+      setError("⚠️ Please enter the full 6-digit code.");
     }
   };
 
   return (
     <div className="w-full min-h-screen flex flex-col bg-white text-gray-800">
-
       {/* Top bar */}
       <div className="w-full flex justify-end text-sm p-4 sm:p-6 md:p-10">
         <p>
@@ -65,11 +70,13 @@ const EmailVerification = ({ formData, setStep }) => {
         >
           {/* inner layout */}
           <div className="w-full h-full flex flex-col lg:flex-row items-start justify-center gap-12 px-8 py-10">
-
             {/* LEFT */}
             <div className="w-full max-w-md">
               <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                Let's meet you
+                Let's meet
+              </h1>
+              <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                you
               </h1>
               <p className="text-gray-600 mb-8 text-sm md:text-base">
                 Just a few details to get you started — including verifying your
@@ -80,7 +87,7 @@ const EmailVerification = ({ formData, setStep }) => {
               <nav className="hidden md:block space-y-4">
                 <button
                   type="button"
-                  onClick={() => setStep(1)}
+                  onClick={() => setStep("basicInfo")}
                   className="flex items-center p-3 border-l-4 border-transparent text-gray-500 hover:text-blue-600"
                 >
                   <span>Basic info</span>
@@ -120,6 +127,13 @@ const EmailVerification = ({ formData, setStep }) => {
                 ))}
               </div>
 
+              {/* Error message */}
+              {error && (
+                <div className="text-red-600 text-sm font-medium mb-4">
+                  {error}
+                </div>
+              )}
+
               <div className="text-sm text-blue-600 font-medium text-center mb-6">
                 {formatTime(timer)}
               </div>
@@ -148,7 +162,6 @@ const EmailVerification = ({ formData, setStep }) => {
                 </button>
               </div>
             </div>
-
           </div>
         </div>
       </main>

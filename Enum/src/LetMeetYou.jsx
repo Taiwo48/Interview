@@ -14,6 +14,7 @@ const LetMeetYou = () => {
 
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [error, setError] = useState("");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -26,10 +27,10 @@ const LetMeetYou = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (formData.password !== formData.confirmPassword) {
-      alert("Passwords do not match!");
+      setError("⚠️ Passwords do not match!");
       return;
     }
-    console.log("Form submitted:", formData);
+    setError("");
     setStep(2);
   };
 
@@ -39,8 +40,7 @@ const LetMeetYou = () => {
 
   return (
     <div className="w-full min-h-screen flex flex-col bg-white text-gray-800">
-
-      {/* top login section */}
+      {/* TOP BAR */}
       <div className="w-full flex justify-end text-sm p-4 sm:p-6 md:p-10">
         <p>
           Already on Enum?{" "}
@@ -50,70 +50,60 @@ const LetMeetYou = () => {
         </p>
       </div>
 
-      {/* CENTERED CONTAINER */}
+      {/* CENTERED SECTION */}
       <main className="w-full flex-1 flex justify-center items-center">
         <div
           className="bg-[#F8FAFC] rounded-xl shadow-sm"
-          style={{
-            width: "884px",
-            height: "634px",
-            gap: "20px",
-            opacity: 1,
-          }}
+          style={{ width: "884px", height: "634px" }}
         >
-          {/* inner spacing */}
-          <div className="w-full h-full flex flex-col lg:flex-row items-start justify-center gap-12 px-8 py-10">
+          <div className="w-full h-full bg-white shadow-lg rounded-lg grid grid-cols-1 md:grid-cols-2">
+            
+            {/* LEFT SIDE (matches AddCompany) */}
+            <div className="p-6 sm:p-8 border-b md:border-b-0 md:border-r bg-gray-50">
+              <h1 className="text-3xl font-bold text-gray-900 mb-2">Let's meet</h1>
+              <h1 className="text-3xl font-bold text-gray-900 mb-4">you</h1>
 
-            {/* LEFT */}
-            <div className="w-full max-w-md">
-              <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                Let's meet 
-              </h1>
-              <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                 you
-              </h1>
-              <p className="text-gray-600 mb-8 text-sm md:text-base">
+              <p className="text-gray-600 mb-6 text-sm md:text-base">
                 Just a few details to get you started — including verifying your
                 email — so we can personalize your setup and unlock the right
                 tools for you.
               </p>
 
-              <nav className="hidden md:block space-y-4">
-                <button
-                  type="button"
-                  onClick={() => setStep(1)}
-                  className={`flex items-center p-3 border-l-4 ${
+              <ul className="space-y-2 text-gray-700">
+                <li
+                  className={`cursor-pointer px-3 py-1 border-l-4 ${
                     step === 1
-                      ? "border-blue-600 text-blue-600 font-semibold"
-                      : "border-transparent text-gray-500 hover:text-blue-600"
+                      ? "border-blue-600 text-blue-600 font-semibold bg-blue-50"
+                      : "border-transparent hover:text-blue-500"
                   }`}
+                  onClick={() => setStep(1)}
                 >
-                  <span>Basic info</span>
-                </button>
+                  Basic info
+                </li>
 
-                <button
-                  type="button"
-                  onClick={() => setStep(2)}
-                  className={`flex items-center p-3 border-l-4 ${
+                <li
+                  className={`cursor-pointer px-3 py-1 border-l-4 ${
                     step === 2
-                      ? "border-blue-600 text-blue-600 font-semibold"
-                      : "border-transparent text-gray-500 hover:text-blue-600"
+                      ? "border-blue-600 text-blue-600 font-semibold bg-blue-50"
+                      : "border-transparent hover:text-blue-500"
                   }`}
+                  onClick={() => setStep(2)}
                 >
-                  <span>Email verification</span>
-                </button>
-              </nav>
+                  Email verification
+                </li>
+              </ul>
             </div>
 
-            {/* RIGHT FORM */}
-            <div className="w-full max-w-lg bg-white p-6 md:p-8 rounded-xl border border-gray-200 shadow-sm">
+            {/* RIGHT SIDE (same structure as AddCompany) */}
+            <div className="p-6 sm:p-8 h-[600px] overflow-y-auto">
               <h2 className="text-lg md:text-xl font-semibold mb-6">
                 Basic info
               </h2>
 
               <form onSubmit={handleSubmit}>
                 <div className="space-y-5">
-
+                  
+                  {/* FIRST NAME */}
                   <div>
                     <label className="block text-sm font-medium text-gray-700">
                       First name<span className="text-red-500">*</span>
@@ -129,6 +119,7 @@ const LetMeetYou = () => {
                     />
                   </div>
 
+                  {/* LAST NAME */}
                   <div>
                     <label className="block text-sm font-medium text-gray-700">
                       Last name<span className="text-red-500">*</span>
@@ -144,6 +135,7 @@ const LetMeetYou = () => {
                     />
                   </div>
 
+                  {/* EMAIL */}
                   <div>
                     <label className="block text-sm font-medium text-gray-700">
                       Work email<span className="text-red-500">*</span>
@@ -159,6 +151,7 @@ const LetMeetYou = () => {
                     />
                   </div>
 
+                  {/* PASSWORD */}
                   <div>
                     <label className="block text-sm font-medium text-gray-700">
                       Password<span className="text-red-500">*</span>
@@ -183,6 +176,7 @@ const LetMeetYou = () => {
                     </div>
                   </div>
 
+                  {/* CONFIRM PASSWORD */}
                   <div>
                     <label className="block text-sm font-medium text-gray-700">
                       Confirm password<span className="text-red-500">*</span>
@@ -209,6 +203,14 @@ const LetMeetYou = () => {
                     </div>
                   </div>
 
+                  {/* ERROR */}
+                  {error && (
+                    <div className="text-red-600 text-sm font-medium">
+                      {error}
+                    </div>
+                  )}
+
+                  {/* NEXT BUTTON */}
                   <div className="flex justify-end pt-4">
                     <button
                       type="submit"
@@ -230,3 +232,4 @@ const LetMeetYou = () => {
 };
 
 export default LetMeetYou;
+  
