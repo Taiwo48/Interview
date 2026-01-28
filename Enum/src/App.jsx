@@ -1,10 +1,12 @@
 import './index.css';
-import Sidebar from './side-bar';
+import Sidebar from './SideBar';
+
 
 function App () {
   return (
     <>
     <Sidebar />
+    
     </>
   );
 }

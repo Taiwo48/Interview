@@ -118,13 +118,13 @@ export default function AddCompany() {
             </div>
 
             <div className="flex justify-end pt-6">
-            <button
-              type="button"
-              onClick={goToNextStep}
-              className="text-blue-600 font-bold text-lg hover:underline mr-2"
-            >
-              Next
-            </button>
+              <button
+                type="button"
+                onClick={goToNextStep}
+                className="text-blue-600 font-bold text-lg hover:underline mr-2"
+              >
+                Next
+              </button>
             </div>
           </form>
         );
@@ -149,18 +149,18 @@ export default function AddCompany() {
               {form.description.length}/1000 characters
             </div>
             <div className="flex justify-end pt-6">
-            <button
-              type="button"
-              onClick={goToNextStep}
-              className="text-blue-600 font-bold text-lg hover:underline mr-2"
-            >
-              Next
-            </button>
+              <button
+                type="button"
+                onClick={goToNextStep}
+                className="text-blue-600 font-bold text-lg hover:underline mr-2"
+              >
+                Next
+              </button>
             </div>
           </div>
         );
 
-case "Usage preference":
+      case "Usage preference":
         const usageOptions = [
           "To train employees",
           "To train partners",
@@ -237,38 +237,48 @@ case "Usage preference":
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4 sm:p-6">
-      <div className="bg-white shadow-lg rounded-lg w-full max-w-6xl grid grid-cols-1 md:grid-cols-2">
+    <div className="w-full min-h-screen flex flex-col bg-white text-gray-800">
+      <main className="w-full flex-1 flex justify-center items-center">
+        <div
+          className="bg-[#F8FAFC] rounded-xl shadow-sm"
+          style={{ width: "884px", height: "634px" }}
+        >
+          <div className="w-full h-full bg-white shadow-lg rounded-lg grid grid-cols-1 md:grid-cols-2">
+            
+            {/* Left side */}
+            <div className="p-6 sm:p-8 border-b md:border-b-0 md:border-r bg-gray-50">
+              <h2 className="text-2xl font-bold text-gray-800 mb-2">Add</h2>
+              <h2 className="text-2xl font-bold text-gray-800 mb-2">company</h2>
+              <p className="text-gray-600 mb-6">
+                Nice work, David. Just one more step — Now, let’s complete your
+                setup with your organization’s info.
+              </p>
+              <ul className="space-y-2 text-gray-700">
+                {["Details", "Short description", "Usage preference", "Logo"].map(
+                  (step) => (
+                    <li
+                      key={step}
+                      onClick={() => setActiveStep(step)}
+                      className={`cursor-pointer px-3 py-1 border-l-4 ${
+                        activeStep === step
+                          ? "border-blue-600 text-blue-600 font-semibold bg-blue-50"
+                          : "border-transparent hover:text-blue-500"
+                      }`}
+                    >
+                      {step}
+                    </li>
+                  )
+                )}
+              </ul>
+            </div>
 
-        <div className="p-6 sm:p-8 border-b md:border-b-0 md:border-r">
-          <h2 className="text-2xl font-bold text-gray-800 mb-2">Add</h2>
-          <h2 className="text-2xl font-bold text-gray-800 mb-2">company</h2>
-          <p className="text-gray-600 mb-6">
-            Nice work, David. Just one more step — Now, let’s complete your setup with your organization’s info.
-          </p>
-          <ul className="space-y-2 text-gray-700">
-            {["Details", "Short description", "Usage preference", "Logo"].map((step) => (
-              <li
-                key={step}
-                onClick={() => setActiveStep(step)}
-                className={`cursor-pointer px-3 py-1 border-l-4 ${
-                  activeStep === step
-                    ? "border-blue-600 text-blue-600 font-semibold bg-blue-50"
-                    : "border-transparent hover:text-blue-500"
-                }`}
-              >
-                {step}
-              </li>
-            ))}
-          </ul>
+            {/* Right side */}
+            <div className="p-6 sm:p-8 h-[600px] overflow-y-auto">
+              {renderStepContent()}
+            </div>
+          </div>
         </div>
-
-        {/* 🔥 FIX APPLIED HERE */}
-        <div className="p-6 sm:p-8 h-[600px] overflow-y-auto">
-          {renderStepContent()}
-        </div>
-
-      </div>
+      </main>
     </div>
   );
 }

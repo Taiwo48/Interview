@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import LetMeetYou from "./let-meet-you";
-import AddCompany from "./add-company";  
-import InviteYourTeam from "./Invite-Your-Team";
+import LetMeetYou from "./LetMeetYou";
+import AddCompany from "./AddCompany";  
+import InviteYourTeam from "./InviteYourTeam";
 
 import Logo from "./assets/Enum_Logo_White 1.png";
 
@@ -34,10 +34,10 @@ const Sidebar = () => {
   return (
     <div className="flex min-h-screen">
       
+      {/* Sidebar */}
       <div className="w-64 bg-blue-600 text-white p-6">
         <img src={Logo} alt="Logo" className="w-20 h-5 mb-6" />
 
-        
         <div className="relative">
           {steps.map((step, index) => {
             const isActive = activeStep === step.id;
@@ -48,7 +48,6 @@ const Sidebar = () => {
                 className="relative flex items-start mb-8 cursor-pointer"
                 onClick={() => setActiveStep(step.id)}
               >
-                
                 <div className="flex flex-col items-center mr-4">
                   <div
                     className={`w-6 h-6 flex items-center justify-center rounded-full border-2 transition-colors duration-300 ${
@@ -66,7 +65,6 @@ const Sidebar = () => {
                   )}
                 </div>
 
-            
                 <div>
                   <h3
                     className={`font-semibold ${
@@ -83,8 +81,22 @@ const Sidebar = () => {
         </div>
       </div>
 
-      
-      <div className="flex-1 p-10 bg-gray-50">{activeComponent}</div>
+      {/* Main Content */}
+      <div className="flex-1 p-10 bg-gray-50 flex flex-col">
+        <div className="flex-1">{activeComponent}</div>
+
+        {/* Progress Lines */}
+        <div className="flex justify-center space-x-4 mt-6">
+          {steps.map((step) => (
+            <div
+              key={step.id}
+              className={`h-1 w-24 rounded-full transition-colors duration-300 ${
+                activeStep === step.id ? "bg-blue-600" : "bg-gray-300"
+              }`}
+            ></div>
+          ))}
+        </div>
+      </div>
     </div>
   );
 };
