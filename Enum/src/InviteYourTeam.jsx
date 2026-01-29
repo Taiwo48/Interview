@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { IoMdArrowBack } from "react-icons/io";
 import Dashboard from "./Dashboard";
 
 export default function InviteYourTeam() {
@@ -35,38 +36,38 @@ export default function InviteYourTeam() {
 
   return (
     <div className="min-h-screen bg-white flex flex-col items-center pt-12">
-      {/* TOP BAR OUTSIDE CONTAINER */}
-      <div className="w-full flex justify-between px-8 mb-4">
-        {/* Back Button */}
-        <button
-          type="button"
-          onClick={() => navigate(-1)} // go back to previous page
-          className="flex items-center text-black text-sm font-medium hover:text-gray-700"
-        >
-          <span className="mr-2 text-xl">←</span> {/* small black arrow */}
-          
-        </button>
-
-        {/* Login Link */}
-        <a href="#" className="text-sm text-gray-600 hover:underline">
-          Already on Enum?{" "}
-          <span className="text-blue-600 hover:underline">Log in</span>
-        </a>
-      </div>
-
-      {/* MAIN CONTAINER */}
+      {/* MAIN CARD */}
       <div
-        className="bg-gray-50 px-8 rounded-xl shadow-lg space-y-6"
+        className="bg-gray-50 rounded-xl shadow-lg w-[867px] space-y-6"
         style={{
-          width: "867px",
           height: "318px",
           gap: "20px",
           transform: "rotate(0deg)",
           opacity: 1,
+          padding: "16px",
         }}
       >
+        {/* TOP BAR AT THE TOP OF THE CARD */}
+        <div className="w-full flex items-center justify-between mb-4">
+          {/* Back Button on the left */}
+          <button
+            type="button"
+            className="flex items-center text-black text-sm font-medium hover:text-gray-700"
+          >
+            <IoMdArrowBack className="text-xl" />
+          </button>
+
+          {/* Login Link on the right */}
+          <span className="text-sm text-gray-600">
+            Already on Enum?{" "}
+            <a href="#" className="text-blue-600 hover:underline">
+              Log in
+            </a>
+          </span>
+        </div>
+
         {/* MAIN CONTENT */}
-        <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
           {/* LEFT TEXT */}
           <div>
             <h1 className="text-3xl font-semibold text-gray-900 mb-4">Invite your</h1>
@@ -134,7 +135,7 @@ export default function InviteYourTeam() {
         </div>
       </div>
 
-      {/* AGREEMENT + CONTINUE OUTSIDE CONTAINER */}
+      {/* AGREEMENT + CONTINUE OUTSIDE CARD */}
       <div className="mt-6 w-[867px] flex items-center justify-between">
         <label className="flex items-start gap-2 text-sm text-gray-600">
           <input

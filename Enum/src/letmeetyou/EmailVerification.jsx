@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import AddCompany from "./AddCompany";
+
 
 const EmailVerification = ({ formData, setStep }) => {
   const [code, setCode] = useState(["", "", "", "", "", ""]);
@@ -37,11 +37,11 @@ const EmailVerification = ({ formData, setStep }) => {
       console.log("Verifying code:", enteredCode);
       setError("");
 
-      // ✅ CORRECT STEP NAME (TAKES YOU TO ADD COMPANY)
+      
       setStep("AddCompany");
 
     } else {
-      setError("⚠️ Please enter the full 6-digit code.");
+      setError(" Please enter the full 6-digit code.");
     }
   };
 
