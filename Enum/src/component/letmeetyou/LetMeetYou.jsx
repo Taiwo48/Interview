@@ -24,7 +24,7 @@ const LetMeetYou = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (formData.password !== formData.confirmPassword) {
-      setError("⚠️ Passwords do not match!");
+      setError("Passwords do not match!");
       return;
     }
     setError("");
@@ -37,7 +37,7 @@ const LetMeetYou = () => {
 
   return (
     <div className="w-full min-h-screen flex flex-col bg-white text-gray-800">
-      {/* TOP BAR */}
+      
       <div className="w-full flex justify-end text-sm p-4 sm:p-6 md:p-10">
         <p>
           Already on Enum?{" "}
@@ -47,7 +47,7 @@ const LetMeetYou = () => {
         </p>
       </div>
 
-      {/* CENTERED SECTION */}
+      
       <main className="w-full flex-1 flex justify-center items-center">
         <div
           className="bg-[#F8FAFC] rounded-xl shadow-sm"
@@ -55,7 +55,7 @@ const LetMeetYou = () => {
         >
           <div className="w-full h-full bg-white shadow-lg rounded-lg grid grid-cols-1 md:grid-cols-2">
             
-            {/* LEFT SIDE */}
+            
             <div className="p-6 sm:p-8 border-b md:border-b-0 md:border-r bg-gray-50">
               <h1 className="text-3xl font-bold text-gray-900 mb-2">Let's meet</h1>
               <h1 className="text-3xl font-bold text-gray-900 mb-4">you</h1>
@@ -90,7 +90,7 @@ const LetMeetYou = () => {
               </ul>
             </div>
 
-            {/* RIGHT SIDE */}
+            
             <div className="p-6 sm:p-8 h-[600px] overflow-y-auto">
               <BasicInfo
                 formData={formData}
@@ -107,6 +107,13 @@ const LetMeetYou = () => {
           </div>
         </div>
       </main>
+      
+<div className="flex justify-center gap-4 py-6">
+  <div className="h-1 w-20 rounded-full bg-blue-600"></div>
+  <div className="h-1 w-20 rounded-full bg-gray-300"></div>
+  <div className="h-1 w-20 rounded-full bg-gray-300"></div>
+</div>
+
     </div>
   );
 };

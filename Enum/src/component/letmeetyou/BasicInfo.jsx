@@ -16,7 +16,7 @@ export default function BasicInfo({
 
       <form onSubmit={handleSubmit}>
         <div className="space-y-5">
-          {/* FIRST NAME */}
+          
           <div>
             <label className="block text-sm font-medium text-gray-700">
               First name<span className="text-red-500">*</span>
@@ -32,7 +32,7 @@ export default function BasicInfo({
             />
           </div>
 
-          {/* LAST NAME */}
+          
           <div>
             <label className="block text-sm font-medium text-gray-700">
               Last name<span className="text-red-500">*</span>
@@ -48,7 +48,7 @@ export default function BasicInfo({
             />
           </div>
 
-          {/* EMAIL */}
+          
           <div>
             <label className="block text-sm font-medium text-gray-700">
               Work email<span className="text-red-500">*</span>
@@ -64,7 +64,7 @@ export default function BasicInfo({
             />
           </div>
 
-          {/* PASSWORD */}
+          
           <div>
             <label className="block text-sm font-medium text-gray-700">
               Password<span className="text-red-500">*</span>
@@ -89,7 +89,7 @@ export default function BasicInfo({
             </div>
           </div>
 
-          {/* CONFIRM PASSWORD */}
+          
           <div>
             <label className="block text-sm font-medium text-gray-700">
               Confirm password<span className="text-red-500">*</span>
@@ -120,7 +120,7 @@ export default function BasicInfo({
             <div className="text-red-600 text-sm font-medium">{error}</div>
           )}
 
-          {/* NEXT BUTTON */}
+          
           <div className="flex justify-end pt-4">
             <button
               type="submit"

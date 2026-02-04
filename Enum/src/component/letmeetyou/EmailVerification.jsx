@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 const EmailVerification = ({ formData, setStep }) => {
   const [code, setCode] = useState(["", "", "", "", "", ""]);
   const [timer, setTimer] = useState(116);
-  const [error, setError] = useState(""); // ❗ Error message
+  const [error, setError] = useState(""); 
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -47,7 +47,7 @@ const EmailVerification = ({ formData, setStep }) => {
 
   return (
     <div className="w-full min-h-screen flex flex-col bg-white text-gray-800">
-      {/* Top bar */}
+      
       <div className="w-full flex justify-end text-sm p-4 sm:p-6 md:p-10">
         <p>
           Already on Enum?{" "}
@@ -57,7 +57,7 @@ const EmailVerification = ({ formData, setStep }) => {
         </p>
       </div>
 
-      {/* CENTERED CONTAINER */}
+      
       <main className="w-full flex-1 flex justify-center items-center">
         <div
           className="bg-[#F8FAFC] rounded-xl shadow-sm"
@@ -68,9 +68,9 @@ const EmailVerification = ({ formData, setStep }) => {
             opacity: 1,
           }}
         >
-          {/* inner layout */}
+          
           <div className="w-full h-full flex flex-col lg:flex-row items-start justify-center gap-12 px-8 py-10">
-            {/* LEFT */}
+            
             <div className="w-full max-w-md">
               <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
                 Let's meet
@@ -101,7 +101,7 @@ const EmailVerification = ({ formData, setStep }) => {
               </nav>
             </div>
 
-            {/* RIGHT CARD */}
+            
             <div className="w-full max-w-lg bg-white p-6 md:p-8 rounded-xl border border-gray-200 shadow-sm">
               <h2 className="text-lg md:text-xl font-semibold mb-6">
                 Email verification
@@ -127,7 +127,7 @@ const EmailVerification = ({ formData, setStep }) => {
                 ))}
               </div>
 
-              {/* Error message */}
+              
               {error && (
                 <div className="text-red-600 text-sm font-medium mb-4">
                   {error}

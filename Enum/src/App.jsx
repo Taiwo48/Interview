@@ -1,6 +1,6 @@
 
 import './index.css';
-import Sidebar from './SideBar';
+import Sidebar from './component/sidebar/Sidebar';
 
 
 function App () {

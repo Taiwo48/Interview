@@ -1,0 +1,16 @@
+.react-calendar {
+    border: none; /* removes the main calendar border */
+    box-shadow: none; /* removes any shadow */
+  }
+  
+  .react-calendar__tile {
+    border: none; /* removes tile borders */
+  }
+  
+  .react-calendar__month-view__weekdays {
+    border-bottom: none; /* removes weekday bottom border */
+  }
+  
+  .react-calendar__navigation button {
+    border: none; /* removes navigation button borders */
+  }

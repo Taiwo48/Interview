@@ -10,8 +10,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "react": "^19.1.1",
-    "react-dom": "^19.1.1"
+    "calander": "^0.0.2",
+    "lucide-react": "^0.563.0",
+    "react": "^19.2.4",
+    "react-calendar": "^6.0.0",
+    "react-dom": "^19.2.4",
+    "recharts": "^3.7.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.36.0",

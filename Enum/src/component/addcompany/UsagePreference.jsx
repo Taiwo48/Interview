@@ -21,7 +21,7 @@ export default function UsagePreferenceStep({ form, togglePreference, goToNextSt
     <div className="flex-1 overflow-y-auto">
       <h3 className="text-xl font-semibold mb-4">Usage preference</h3>
 
-      {/* Updated: buttons now shrink to text size */}
+      
       <div className="h-80 overflow-y-scroll flex flex-wrap gap-3">
         {usageOptions.map((option) => {
           const isSelected = form.usagePreferences.includes(option);

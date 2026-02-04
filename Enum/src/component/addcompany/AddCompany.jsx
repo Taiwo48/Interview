@@ -3,7 +3,8 @@ import DetailsStep from "./Details";
 import ShortDescriptionStep from "./ShortDescription";
 import UsagePreferenceStep from "./UsagePreference";
 import LogoStep from "./Logo";
-
+import LetMeetYou from "../letmeetyou/LetMeetYou";
+import { IoMdArrowBack } from "react-icons/io";
 
 export default function AddCompany() {
   const [form, setForm] = useState({
@@ -19,6 +20,7 @@ export default function AddCompany() {
   });
 
   const [activeStep, setActiveStep] = useState("Details");
+  const [showLetMeetYou, setShowLetMeetYou] = useState(false);
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -75,6 +77,10 @@ export default function AddCompany() {
     }
   };
 
+  if (showLetMeetYou) {
+    return <LetMeetYou />;
+  }
+
   return (
     <div className="w-full min-h-screen flex flex-col bg-white text-gray-800">
       <main className="w-full flex-1 flex justify-center items-center">
@@ -83,14 +89,25 @@ export default function AddCompany() {
           style={{ width: "884px", height: "634px" }}
         >
           <div className="w-full h-full bg-white shadow-lg rounded-lg grid grid-cols-1 md:grid-cols-2">
-            {/* Left side navigation */}
+            
+            
             <div className="p-6 sm:p-8 border-b md:border-b-0 md:border-r bg-gray-50">
+              
+              <button
+                type="button"
+                onClick={() => setShowLetMeetYou(true)}
+                className="flex items-center text-black text-sm font-medium mb-4 hover:text-gray-700"
+              >
+                <IoMdArrowBack className="text-xl mr-2" /> 
+              </button>
+
               <h2 className="text-2xl font-bold text-gray-800 mb-2">Add</h2>
               <h2 className="text-2xl font-bold text-gray-800 mb-2">company</h2>
               <p className="text-gray-600 mb-6">
                 Nice work, David. Just one more step — Now, let’s complete your
                 setup with your organization’s info.
               </p>
+
               <ul className="space-y-2 text-gray-700">
                 {["Details", "Short description", "Usage preference", "Logo"].map(
                   (step) => (
@@ -110,13 +127,20 @@ export default function AddCompany() {
               </ul>
             </div>
 
-            {/* Right side content */}
+            
             <div className="p-6 sm:p-8 h-[600px] overflow-y-auto">
               {renderStepContent()}
             </div>
           </div>
         </div>
       </main>
+
+      
+      <div className="flex justify-center gap-4 py-6">
+        <div className="h-1 w-20 rounded-full bg-gray-300"></div>
+        <div className="h-1 w-20 rounded-full bg-blue-600"></div>
+        <div className="h-1 w-20 rounded-full bg-gray-300"></div>
+      </div>
     </div>
   );
 }

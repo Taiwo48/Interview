@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { IoMdArrowBack } from "react-icons/io";
-import Dashboard from "./Dashboard";
+import Dashboard from "../../dashboard/Pages/Dashboard";
+import AddCompany from "../addcompany/AddCompany";
 
 export default function InviteYourTeam() {
   const [emailList, setEmailList] = useState([]);
   const [emailInput, setEmailInput] = useState("");
   const [agreed, setAgreed] = useState(false);
   const [showDashboard, setShowDashboard] = useState(false);
+  const [showAddCompany, setShowAddCompany] = useState(false);
 
   const handleAddEmail = () => {
     const newEmails = emailInput
@@ -30,13 +32,17 @@ export default function InviteYourTeam() {
     }
   };
 
+  if (showAddCompany) {
+    return <AddCompany />;
+  }
+
   if (showDashboard) {
     return <Dashboard />;
   }
 
   return (
     <div className="min-h-screen bg-white flex flex-col items-center pt-12">
-      {/* MAIN CARD */}
+      
       <div
         className="bg-gray-50 rounded-xl shadow-lg w-[867px] space-y-6"
         style={{
@@ -47,17 +53,17 @@ export default function InviteYourTeam() {
           padding: "16px",
         }}
       >
-        {/* TOP BAR AT THE TOP OF THE CARD */}
+        
         <div className="w-full flex items-center justify-between mb-4">
-          {/* Back Button on the left */}
+          
           <button
             type="button"
+            onClick={() => setShowAddCompany(true)}
             className="flex items-center text-black text-sm font-medium hover:text-gray-700"
           >
             <IoMdArrowBack className="text-xl" />
           </button>
 
-          {/* Login Link on the right */}
           <span className="text-sm text-gray-600">
             Already on Enum?{" "}
             <a href="#" className="text-blue-600 hover:underline">
@@ -66,29 +72,34 @@ export default function InviteYourTeam() {
           </span>
         </div>
 
-        {/* MAIN CONTENT */}
+        
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
-          {/* LEFT TEXT */}
+          
           <div>
-            <h1 className="text-3xl font-semibold text-gray-900 mb-4">Invite your</h1>
+            <h1 className="text-3xl font-semibold text-gray-900 mb-4">
+              Invite your
+            </h1>
             <h1 className="text-3xl font-semibold text-gray-900 mb-4">team</h1>
             <p className="text-gray-600 leading-relaxed max-w-sm">
-              Want help managing things? Invite teammates now or add them anytime later.
+              Want help managing things? Invite teammates now or add them anytime
+              later.
             </p>
 
             {emailList.length > 0 && (
-              <div className="mt-6 inline-flex items-center border border-blue-600 text-blue-600 text-sm font-medium px-4 py-2 rounded-md transition-all">
-                <span className="mr-2 inline-block w-4 h-4 bg-blue-600 rounded-full flex items-center justify-center text-white text-xs">
+              <div className="mt-6 inline-flex items-center border border-blue-600 text-blue-600 text-sm font-medium px-4 py-2 rounded-md">
+                <span className="mr-2 w-4 h-4 bg-blue-600 rounded-full flex items-center justify-center text-white text-xs">
                   ✓
                 </span>
-                {emailList.length} Invite{emailList.length > 1 ? "s" : ""} sent
+                {emailList.length} Invite
+                {emailList.length > 1 ? "s" : ""} sent
               </div>
             )}
           </div>
 
-          {/* RIGHT CARD */}
+          
           <div className="bg-white border border-gray-200 rounded-xl shadow p-6">
             <label className="block text-sm text-gray-700 mb-2">Email</label>
+
             <div className="flex flex-wrap gap-2 items-center border border-gray-300 rounded-md px-3 py-2 min-h-[52px]">
               {emailList.map((email) => (
                 <div
@@ -99,7 +110,7 @@ export default function InviteYourTeam() {
                   <button
                     type="button"
                     onClick={() => handleRemoveEmail(email)}
-                    className="text-gray-400 hover:text-red-500 transition-colors"
+                    className="text-gray-400 hover:text-red-500"
                   >
                     ×
                   </button>
@@ -117,11 +128,10 @@ export default function InviteYourTeam() {
                   }
                 }}
                 placeholder="Enter emails, separated by commas"
-                className="flex-grow border-none focus:outline-none text-sm placeholder-gray-400"
+                className="flex-grow border-none focus:outline-none text-sm"
               />
             </div>
 
-            {/* Invite Button BELOW and aligned RIGHT */}
             <div className="mt-4 flex justify-end">
               <button
                 type="button"
@@ -135,7 +145,7 @@ export default function InviteYourTeam() {
         </div>
       </div>
 
-      {/* AGREEMENT + CONTINUE OUTSIDE CARD */}
+      
       <div className="mt-6 w-[867px] flex items-center justify-between">
         <label className="flex items-start gap-2 text-sm text-gray-600">
           <input
@@ -160,7 +170,7 @@ export default function InviteYourTeam() {
           type="button"
           onClick={handleContinue}
           disabled={!agreed}
-          className={`px-6 py-2 rounded-md text-sm font-semibold transition-colors duration-200 ${
+          className={`px-6 py-2 rounded-md text-sm font-semibold ${
             agreed
               ? "bg-blue-600 text-white hover:bg-blue-700"
               : "bg-gray-200 text-gray-400 cursor-not-allowed"
@@ -168,6 +178,12 @@ export default function InviteYourTeam() {
         >
           Continue
         </button>
+      </div>
+
+      <div className="mt-auto pb-6 flex justify-center gap-4">
+        <div className="h-1 w-20 rounded-full bg-gray-300"></div>
+        <div className="h-1 w-20 rounded-full bg-gray-300"></div>
+        <div className="h-1 w-20 rounded-full bg-blue-600"></div>
       </div>
     </div>
   );

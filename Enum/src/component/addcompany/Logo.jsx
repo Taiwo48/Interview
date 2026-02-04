@@ -1,5 +1,5 @@
 import React from "react";
-import LogoImage from "../assets/upload-field.png";
+import LogoImage from "../../assets/upload-field.png";
 
 export default function LogoStep({ form, setForm }) {
   return (
@@ -8,7 +8,7 @@ export default function LogoStep({ form, setForm }) {
 
       <label className="w-40 h-40 border rounded-md mb-2 overflow-hidden flex items-center justify-center cursor-pointer hover:bg-gray-100">
         
-        {/* Placeholder fills the whole box */}
+        
         {!form.logo && (
           <img
             src={LogoImage}
@@ -17,7 +17,7 @@ export default function LogoStep({ form, setForm }) {
           />
         )}
 
-        {/* Uploaded logo */}
+        
         {form.logo && (
           <img
             src={form.logo}
