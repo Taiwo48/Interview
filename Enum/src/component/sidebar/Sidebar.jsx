@@ -7,6 +7,7 @@ import Logo from "../../assets/Enum_Logo_White 1.png";
 
 const Sidebar = () => {
   const [activeStep, setActiveStep] = useState(1);
+  const [isOpen, setIsOpen] = useState(false); // ✅ toggle state added
 
   const steps = [
     {
@@ -33,67 +34,94 @@ const Sidebar = () => {
 
   return (
     <div className="flex flex-col md:flex-row min-h-screen">
-      
-      
-      <div className="w-full md:w-64 bg-blue-600 text-white p-4 sm:p-6 md:p-6 flex flex-col h-screen sticky top-0">
-      
-        <div className="mb-8 md:mb-12 flex justify-center md:justify-start">
-          <img src={Logo} alt="Logo" className="w-20 h-5" />
-        </div>
 
-        
-        <div className="space-y-4 overflow-y-auto flex-1">
-          {steps.map((step, index) => {
-            const isActive = activeStep === step.id;
+      {/* ✅ Mobile Toggle Button */}
+      <div className="md:hidden flex justify-between items-center p-4 bg-blue-600 text-white">
+        <img src={Logo} alt="Logo" className="w-20 h-5" />
+        <button onClick={() => setIsOpen(true)}>☰</button>
+      </div>
 
-            return (
-              <div
-                key={step.id}
-                className="flex gap-4 cursor-pointer items-start"
-                onClick={() => setActiveStep(step.id)}
-              >
-                
-                <div className="flex flex-col items-center">
-                  <div
-                    className={`w-5 h-5 rounded-full border-2 flex items-center justify-center transition-colors ${
-                      isActive
-                        ? "bg-white border-white"
-                        : "border-white bg-blue-600"
-                    }`}
-                  >
-                    {isActive && (
-                      <span className="w-2 h-2 bg-blue-600 rounded-full"></span>
+      {/* ✅ Sidebar (ONLY hidden on mobile) */}
+      <div
+        className={`${
+          isOpen ? "block" : "hidden"
+        } md:block fixed md:static top-0 left-0 z-40`}
+      >
+        <div className="w-full md:w-64 bg-blue-600 text-white p-4 sm:p-6 md:p-6 flex flex-col h-screen sticky top-0">
+
+          {/* Close button (mobile only) */}
+          <button
+            className="md:hidden text-white text-2xl mb-4"
+            onClick={() => setIsOpen(false)}
+          >
+            ✕
+          </button>
+
+          <div className="mb-8 md:mb-12 flex justify-center md:justify-start">
+            <img src={Logo} alt="Logo" className="w-20 h-5" />
+          </div>
+
+          <div className="space-y-4 overflow-y-auto flex-1">
+            {steps.map((step, index) => {
+              const isActive = activeStep === step.id;
+
+              return (
+                <div
+                  key={step.id}
+                  className="flex gap-4 cursor-pointer items-start"
+                  onClick={() => {
+                    setActiveStep(step.id);
+                    setIsOpen(false); // auto close on mobile
+                  }}
+                >
+                  <div className="flex flex-col items-center">
+                    <div
+                      className={`w-5 h-5 rounded-full border-2 flex items-center justify-center transition-colors ${
+                        isActive
+                          ? "bg-white border-white"
+                          : "border-white bg-blue-600"
+                      }`}
+                    >
+                      {isActive && (
+                        <span className="w-2 h-2 bg-blue-600 rounded-full"></span>
+                      )}
+                    </div>
+
+                    {index !== steps.length - 1 && (
+                      <div className="w-px h-12 bg-white mt-1"></div>
                     )}
                   </div>
 
-                  
-                  {index !== steps.length - 1 && (
-                    <div className="w-px h-12 bg-white mt-1"></div>
-                  )}
+                  <div className="flex-1">
+                    <p
+                      className={`font-semibold text-sm sm:text-base ${
+                        isActive ? "text-white" : "text-white/90"
+                      }`}
+                    >
+                      {step.title}
+                    </p>
+                    <p className="text-xs sm:text-sm text-white/80">
+                      {step.description}
+                    </p>
+                  </div>
                 </div>
-
-                
-                <div className="flex-1">
-                  <p
-                    className={`font-semibold text-sm sm:text-base ${
-                      isActive ? "text-white" : "text-white/90"
-                    }`}
-                  >
-                    {step.title}
-                  </p>
-                  <p className="text-xs sm:text-sm text-white/80">{step.description}</p>
-                </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
       </div>
 
-      
-      <div className="flex-1 p-4 sm:p-6 md:p-10 bg-gray-50 flex flex-col">
-        
-        <div className="flex-1 overflow-y-auto">{activeComponent}</div>
+      {/* ✅ Overlay (mobile only) */}
+      {isOpen && (
+        <div
+          className="fixed inset-0 bg-black/40 md:hidden"
+          onClick={() => setIsOpen(false)}
+        ></div>
+      )}
 
+      {/* Main Content */}
+      <div className="flex-1 p-4 sm:p-6 md:p-10 bg-gray-50 flex flex-col">
+        <div className="flex-1 overflow-y-auto">{activeComponent}</div>
       </div>
     </div>
   );

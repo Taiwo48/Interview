@@ -41,10 +41,11 @@ export default function InviteYourTeam() {
   }
 
   return (
-    <div className="min-h-screen bg-white flex flex-col items-center pt-12">
+    <div className="min-h-screen bg-white flex flex-col items-center pt-12 px-4 md:px-0">
       
+      {/* Main Card */}
       <div
-        className="bg-gray-50 rounded-xl shadow-lg w-[867px] space-y-6"
+        className="bg-gray-50 rounded-xl shadow-lg w-full md:w-[867px] max-w-full space-y-6"
         style={{
           height: "318px",
           gap: "20px",
@@ -53,9 +54,8 @@ export default function InviteYourTeam() {
           padding: "16px",
         }}
       >
-        
+        {/* Header */}
         <div className="w-full flex items-center justify-between mb-4">
-          
           <button
             type="button"
             onClick={() => setShowAddCompany(true)}
@@ -72,17 +72,13 @@ export default function InviteYourTeam() {
           </span>
         </div>
 
-        
+        {/* Content Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
-          
           <div>
-            <h1 className="text-3xl font-semibold text-gray-900 mb-4">
-              Invite your
-            </h1>
+            <h1 className="text-3xl font-semibold text-gray-900 mb-4">Invite your</h1>
             <h1 className="text-3xl font-semibold text-gray-900 mb-4">team</h1>
             <p className="text-gray-600 leading-relaxed max-w-sm">
-              Want help managing things? Invite teammates now or add them anytime
-              later.
+              Want help managing things? Invite teammates now or add them anytime later.
             </p>
 
             {emailList.length > 0 && (
@@ -90,13 +86,11 @@ export default function InviteYourTeam() {
                 <span className="mr-2 w-4 h-4 bg-blue-600 rounded-full flex items-center justify-center text-white text-xs">
                   ✓
                 </span>
-                {emailList.length} Invite
-                {emailList.length > 1 ? "s" : ""} sent
+                {emailList.length} Invite{emailList.length > 1 ? "s" : ""} sent
               </div>
             )}
           </div>
 
-          
           <div className="bg-white border border-gray-200 rounded-xl shadow p-6">
             <label className="block text-sm text-gray-700 mb-2">Email</label>
 
@@ -145,32 +139,37 @@ export default function InviteYourTeam() {
         </div>
       </div>
 
-      
-      <div className="mt-6 w-[867px] flex items-center justify-between">
-        <label className="flex items-start gap-2 text-sm text-gray-600">
-          <input
-            type="checkbox"
-            checked={agreed}
-            onChange={(e) => setAgreed(e.target.checked)}
-            className="mt-[2px]"
-          />
-          <span>
-            I agree to{" "}
-            <a href="#" className="text-blue-600 hover:underline">
-              Terms of Service
-            </a>{" "}
-            and{" "}
-            <a href="#" className="text-blue-600 hover:underline">
-              Privacy Policy
-            </a>
-          </span>
-        </label>
+      {/* Mobile Responsive: Terms + Continue */}
+      <div className="mt-6 w-full md:w-[867px] max-w-full flex flex-col gap-4 px-2 md:flex-row md:items-center md:justify-between">
+        
+        {/* Checkbox */}
+        <div className="w-full md:w-auto">
+          <label className="flex items-start gap-2 text-sm text-gray-600 w-full">
+            <input
+              type="checkbox"
+              checked={agreed}
+              onChange={(e) => setAgreed(e.target.checked)}
+              className="mt-[2px]"
+            />
+            <span>
+              I agree to{" "}
+              <a href="#" className="text-blue-600 hover:underline">
+                Terms of Service
+              </a>{" "}
+              and{" "}
+              <a href="#" className="text-blue-600 hover:underline">
+                Privacy Policy
+              </a>
+            </span>
+          </label>
+        </div>
 
+        {/* Continue Button */}
         <button
           type="button"
           onClick={handleContinue}
           disabled={!agreed}
-          className={`px-6 py-2 rounded-md text-sm font-semibold ${
+          className={`px-6 py-2 rounded-md text-sm font-semibold w-full md:w-auto ${
             agreed
               ? "bg-blue-600 text-white hover:bg-blue-700"
               : "bg-gray-200 text-gray-400 cursor-not-allowed"
@@ -180,7 +179,8 @@ export default function InviteYourTeam() {
         </button>
       </div>
 
-      <div className="mt-auto pb-6 flex justify-center gap-4">
+      {/* Progress Dots */}
+      <div className="mt-auto pb-6 flex justify-center gap-4 w-full md:w-auto">
         <div className="h-1 w-20 rounded-full bg-gray-300"></div>
         <div className="h-1 w-20 rounded-full bg-gray-300"></div>
         <div className="h-1 w-20 rounded-full bg-blue-600"></div>
