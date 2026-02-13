@@ -43,7 +43,7 @@ export default function InviteYourTeam() {
   return (
     <div className="min-h-screen bg-white flex flex-col items-center pt-12 px-4 md:px-0">
       
-      {/* Main Card */}
+      
       <div
         className="bg-gray-50 rounded-xl shadow-lg w-full md:w-[867px] max-w-full space-y-6"
         style={{
@@ -54,7 +54,7 @@ export default function InviteYourTeam() {
           padding: "16px",
         }}
       >
-        {/* Header */}
+        
         <div className="w-full flex items-center justify-between mb-4">
           <button
             type="button"
@@ -72,7 +72,7 @@ export default function InviteYourTeam() {
           </span>
         </div>
 
-        {/* Content Grid */}
+        
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
           <div>
             <h1 className="text-3xl font-semibold text-gray-900 mb-4">Invite your</h1>
@@ -139,10 +139,10 @@ export default function InviteYourTeam() {
         </div>
       </div>
 
-      {/* Mobile Responsive: Terms + Continue */}
+      
       <div className="mt-6 w-full md:w-[867px] max-w-full flex flex-col gap-4 px-2 md:flex-row md:items-center md:justify-between">
         
-        {/* Checkbox */}
+        
         <div className="w-full md:w-auto">
           <label className="flex items-start gap-2 text-sm text-gray-600 w-full">
             <input
@@ -164,7 +164,7 @@ export default function InviteYourTeam() {
           </label>
         </div>
 
-        {/* Continue Button */}
+        
         <button
           type="button"
           onClick={handleContinue}
@@ -179,7 +179,7 @@ export default function InviteYourTeam() {
         </button>
       </div>
 
-      {/* Progress Dots */}
+      
       <div className="mt-auto pb-6 flex justify-center gap-4 w-full md:w-auto">
         <div className="h-1 w-20 rounded-full bg-gray-300"></div>
         <div className="h-1 w-20 rounded-full bg-gray-300"></div>
